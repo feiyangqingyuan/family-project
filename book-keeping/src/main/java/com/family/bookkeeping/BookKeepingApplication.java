@@ -1,9 +1,11 @@
 package com.family.bookkeeping;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan(basePackages = "com.family.bookkeeping.dao")
 public class BookKeepingApplication {
 
     public static void main(String[] args) {
