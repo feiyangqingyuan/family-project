@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.family.bookkeeping.dao.ExpensesRecordDao">
+
+  <resultMap type="com.family.bookkeeping.entity.ExpensesRecord" id="ExpensesRecordMap">
+    <result property="id" column="id" jdbcType="INTEGER"/>
+    <result property="amount" column="amount" jdbcType="NUMERIC"/>
+    <result property="description" column="description" jdbcType="VARCHAR"/>
+    <result property="consumptionDate" column="consumption_date" jdbcType="TIMESTAMP"/>
+    <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    <result property="createBy" column="create_by" jdbcType="INTEGER"/>
+    <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    <result property="updateBy" column="update_by" jdbcType="INTEGER"/>
+    <result property="deleted" column="deleted" jdbcType="BOOLEAN"/>
+  </resultMap>
+
+  <!--查询单个-->
+  <select id="queryById" resultMap="ExpensesRecordMap">
+    select id,
+           amount,
+           description,
+           consumption_date,
+           create_time,
+           create_by,
+           update_time,
+           update_by,
+           deleted
+    from book_keeping.expenses_record
+    where id = #{id}
+  </select>
+
+  <!--查询指定行数据-->
+  <select id="queryAllByLimit" resultMap="ExpensesRecordMap">
+    select id,
+           amount,
+           description,
+           consumption_date,
+           create_time,
+           create_by,
+           update_time,
+           update_by,
+           deleted
+    from book_keeping.expenses_record limit #{offset}, #{limit}
+  </select>
+
+  <!--通过实体作为筛选条件查询-->
+  <select id="queryAll" resultMap="ExpensesRecordMap">
+    select
+    id, amount, description, consumption_date, create_time, create_by, update_time, update_by,
+    deleted
+    from book_keeping.expenses_record
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="amount != null">
+        and amount = #{amount}
+      </if>
+      <if test="description != null and description != ''">
+        and description = #{description}
+      </if>
+      <if test="consumptionDate != null">
+        and consumption_date = #{consumptionDate}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime}
+      </if>
+      <if test="createBy != null">
+        and create_by = #{createBy}
+      </if>
+      <if test="updateTime != null">
+        and update_time = #{updateTime}
+      </if>
+      <if test="updateBy != null">
+        and update_by = #{updateBy}
+      </if>
+      <if test="deleted != null">
+        and deleted = #{deleted}
+      </if>
+    </where>
+  </select>
+
+  <!--新增所有列-->
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    insert into book_keeping.expenses_record(amount, description, consumption_date, create_time,
+                                             create_by, update_time, update_by, deleted)
+    values (#{amount}, #{description}, #{consumptionDate}, #{createTime}, #{createBy},
+            #{updateTime}, #{updateBy}, #{deleted})
+  </insert>
+
+  <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+    insert into book_keeping.expenses_record(amount, description, consumption_date, create_time,
+    create_by, update_time, update_by, deleted)
+    values
+    <foreach collection="entities" item="entity" separator=",">
+      (#{entity.amount}, #{entity.description}, #{entity.consumptionDate}, #{entity.createTime},
+      #{entity.createBy}, #{entity.updateTime}, #{entity.updateBy}, #{entity.deleted})
+    </foreach>
+  </insert>
+
+  <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+    insert into book_keeping.expenses_record(amount, description, consumption_date, create_time,
+    create_by, update_time, update_by, deleted)
+    values
+    <foreach collection="entities" item="entity" separator=",">
+      (#{entity.amount}, #{entity.description}, #{entity.consumptionDate}, #{entity.createTime},
+      #{entity.createBy}, #{entity.updateTime}, #{entity.updateBy}, #{entity.deleted})
+    </foreach>
+    on duplicate key update
+    amount = values(amount) , description = values(description) , consumption_date =
+    values(consumption_date) , create_time = values(create_time) , create_by = values(create_by) ,
+    update_time = values(update_time) , update_by = values(update_by) , deleted = values(deleted)
+  </insert>
+
+  <!--通过主键修改数据-->
+  <update id="update">
+    update book_keeping.expenses_record
+    <set>
+      <if test="amount != null">
+        amount = #{amount},
+      </if>
+      <if test="description != null and description != ''">
+        description = #{description},
+      </if>
+      <if test="consumptionDate != null">
+        consumption_date = #{consumptionDate},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted},
+      </if>
+    </set>
+    where id = #{id}
+  </update>
+
+  <!--通过主键删除-->
+  <delete id="deleteById">
+    delete
+    from book_keeping.expenses_record
+    where id = #{id}
+  </delete>
+
+</mapper>
+

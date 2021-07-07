@@ -1,8 +1,8 @@
+HELP.md
 target/
+!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!.mvn/wrapper/maven-wrapper.jar
-!**.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -11,25 +11,23 @@ target/
 .project
 .settings
 .springBeans
+.sts4-cache
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
-.out
 
 ### NetBeans ###
-nbproject/private/
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-/META-INF/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-/logs/
-/tarsClient.conf
-
+### VS Code ###
+.vscode/
