@@ -17,5 +17,5 @@
 
 
 ## code-generator
-> 详情参考：[mybaties-plus代码生成文档](https://mybatis.plus/guide/generator.html)
+> 详情参考：[mybaties-plus代码生成文档](https://mp.baomidou.com/guide/generator.html)
 

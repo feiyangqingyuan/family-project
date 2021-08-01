@@ -1,5 +1,5 @@
 -- 用户表
-CREATE TABLE `book_keeping`.`user`  (
+CREATE TABLE `book-keeping`.`user`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(20) NOT NULL COMMENT '名称',
   `login_name` varchar(20) NULL COMMENT '登录名',
@@ -13,7 +13,7 @@ CREATE TABLE `book_keeping`.`user`  (
 );
 
 -- 消费记录表
-CREATE TABLE `book_keeping`.`expenses_record`  (
+CREATE TABLE `book-keeping`.`expenses_record`  (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `amount` decimal NOT NULL DEFAULT 0 COMMENT '金额',
   `description` varchar(50) NULL COMMENT '描述',
