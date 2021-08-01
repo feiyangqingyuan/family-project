@@ -1,8 +1,8 @@
 package com.family.bookkeeping.controller;
 
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author feiyang
  * @since 2021-08-01
  */
+@Api(tags = "用户")
 @RestController
 @RequestMapping("/user")
 public class UserController {
